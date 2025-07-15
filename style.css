@@ -3,7 +3,7 @@
     padding: 0;
 }
 body{
-    background-color: antiquewhite;
+    background-color:antiquewhite;
     color: aliceblue;
     font-family: 'Times New Roman', Times, serif;
 }
@@ -40,20 +40,64 @@ nav{
 }
 
 .container{
-    min-height:75vh;
+    min-height:67vh;
+    background-color:black;
+    color: black;
+    margin: 25px auto;
+    width:75%;
+    border-radius: 13px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+    background-image: url('spotify_contant/back.webp');
+    background-size: cover;
 }
 
 .bottom{
     position:sticky;
-    height: 80px;
+    height: 90px;
     background-color: black;
-    bottom: 0;
+    color:white;
+  
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 
 }
 #myProgressBar{
-    width: 80vw;
+    width:75vw;
+}
+.icons{
+    margin-top: 10px;
+}
+.icons i{
+    cursor: pointer;
+}
+
+.songitemcontainer{
+    margin-top: 50px;
+}
+
+.songItem{
+    background-color: black;
+    color: aliceblue;
   
+    height: 45px;
+    width: 32%;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      justify-content: space-around;
+    border-radius: 20px;
+    margin: 8px 0px;
+}
+.songItem img{
+    border-radius: 30px;
+}
+.songItem i{
+    cursor: pointer;
+}
+.songinfo{
+    position:absolute;
+    left: 13%;
 }
