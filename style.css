@@ -66,6 +66,7 @@ nav{
 }
 #myProgressBar{
     width:75vw;
+    cursor: pointer;
 }
 .icons{
     margin-top: 10px;
