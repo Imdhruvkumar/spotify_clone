@@ -1,33 +1,49 @@
 console.log("welcome to  js");
+
+
 let songs = [
-    'songs.spo/1.mp3',
-    'songs.spo/1.mp3',
-    'songs.spo/1.mp3',
-    'songs.spo/1.mp3',
-    'songs.spo/1.mp3',
-    'songs.spo/1.mp3',
-    'songs.spo/1.mp3'
+  { title: 'Pehla Tu Dooja Tu', url: 'songs.spo/1.mp3' },
+  { title: 'Nachdi', url: 'songs.spo/2.mp3' },
+  { title: 'Saiyaara', url: 'songs.spo/3.mp3' },
+  { title: 'Jab Tu Sajan', url: 'songs.spo/4.mp3' },
+  { title: 'Bas Ek Dhadak', url: 'songs.spo/5.mp3' },
+  { title: 'Humsaffur From Saiyaara', url: 'songs.spo/6.mp3' },
+  { title: 'kabhi Na Kabhi', url: 'songs.spo/2.mp3' },
+  
+  // बाकी सूची...
 ];
 let Index=0;
 let audioElement= new Audio(songs[Index])
-let audioClick = document.getElementById('first').addEventListener('click',togglePlayPause);
-let audioClick2 = document.getElementById('second').addEventListener('click',togglePlayPause);
-let audioClick3 = document.getElementById('third').addEventListener('click',togglePlayPause);
-let audioClick4 = document.getElementById('forth').addEventListener('click',togglePlayPause);
-let audioClick5 = document.getElementById('fifth').addEventListener('click',togglePlayPause);
-let audioClick6 = document.getElementById('six').addEventListener('click',togglePlayPause);
-let audioClick7 = document.getElementById('seven').addEventListener('click',togglePlayPause);
+let songInfo = document.querySelector('.songinfo');
+
+
 let mainplaypause = document.getElementById('mainPausePlay');
 let myProgress = document.getElementById('myProgressBar');
-function togglePlayPause()
-    {
-    if(audioElement.paused || audioElement<=0){
-        audioElement.play();
+const btnIds = ['first','second','third','forth','fifth','six','seven'];
+btnIds.forEach((id, i) => {
+  document.getElementById(id)
+    .addEventListener('click', () => togglePlayPause(i));
 
-    }else{  audioElement.pause();}
+
+});
+function togglePlayPause(e)
+{
+        if(Index< 0 || Index >= songs.length)return;
         
-    
+            d=e;
+            audioElement.pause();
+          
+            audioElement.src=songs[d].url;
+              audioElement.currentTime=0;
+              audioElement.play();
+              songInfo.innerHTML= songs[d].title;
+             
+
+
+
+        
 }
+        
 mainplaypause.addEventListener('click',()=>{
      if(audioElement.paused || audioElement<=0){
         audioElement.play();
@@ -51,18 +67,42 @@ myProgress.addEventListener('change',()=>{
     audioElement.currentTime=myProgress.value*audioElement.duration/100; 
 })
 
-let forword = document.querySelector('.forword');
-forword.addEventListener('click',playNextSong);
-forword.addEventListener('ended',playNextSong)
+
+
+document.getElementById('forword').addEventListener('click', () => {
+    audioElement.pause();
+    playNextSong();
+});
+
+
 function playNextSong() {
    Index++;
   
     if (Index >= songs.length) {
         Index = 0; // go back to first song
     }
-    audioElement.src = songs[Index];
+    audioElement.src = songs[Index].url;
     audioElement.play();
+     songInfo.innerHTML= songs[Index].title;
+
 }
 
+let backfor = document.querySelector('#backfor');
+backfor.addEventListener('click',()=>{
+    audioElement.pause();
+    playPreviousSong();
+})
+
+function playPreviousSong(){
+    --Index;
+    if(Index<0){
+        Index=0;
+
+    }
+    audioElement.src=songs[Index].url;
+    audioElement.play();
+     songInfo.innerHTML= songs[d].title;
+
+}
 
  
